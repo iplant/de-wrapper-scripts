@@ -20,6 +20,12 @@ while (<IN>) {
   chomp;
   if (/^>(.+)/) {
     my $l = $1;
+    if (length  > 32) {
+	$l =~ s/(\S+)\s+.+?/$1/;
+    } 
+    if (length  > 32) {
+	$l =~ s/(\S{32}).+/$1/;
+    }
     $l =~ s/\s+/_/g; # NO white space!
     $l =~ s/_$//;    # NO trailing white space!
     if ($seen_label{$l}++) {
